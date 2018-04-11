@@ -52,8 +52,8 @@
             {% if not forloop.first %}
                 <li role="separator" class="divider"></li>
             {% endif %}
-            <li {% if page == currentpage %}class="active"{% endif %}>
-                <a class="menuItem"
+            <li class="nav-item {% if page == currentpage %}active{% endif %}">
+                <a class="nav-link"
                    href="{{ page.get_absolute_url }}">
                     {% if page.display_title %}
                         {{ page.display_title }}
@@ -69,8 +69,9 @@
     {% if site.use_registration_page %}
 
         <li role="separator" class="divider"></li>
-        <li>
-            <a href="{% url 'participants:registration-create' site.short_name %}"><b>Join</b></a>
+        <li class="nav-item">
+            <a class="nav-link"
+               href="{% url 'participants:registration-create' site.short_name %}"><b>Join</b></a>
         </li>
 
     {% endif %}
@@ -82,19 +83,22 @@
             <li role="separator" class="divider"></li>
 
             {% if site.evaluation_config.use_teams %}
-                <li>
-                    <a href="{% url 'teams:list' site.short_name %}"><b>Teams</b></a>
+                <li class="nav-item">
+                    <a class="nav-link"
+                       href="{% url 'teams:list' site.short_name %}"><b>Teams</b></a>
                 </li>
             {% endif %}
-            <li>
-                <a href="{% url 'evaluation:submission-create' site.short_name %}"><b>Submit</b></a>
+            <li class="nav-item">
+                <a class="nav-link"
+                   href="{% url 'evaluation:submission-create' site.short_name %}"><b>Submit</b></a>
             </li>
 
         {% endif %}
 
         <li role="separator" class="divider"></li>
-        <li>
-            <a href="{% url 'evaluation:result-list' site.short_name %}">Results</a>
+        <li class="nav-item">
+            <a class="nav-link"
+               href="{% url 'evaluation:result-list' site.short_name %}">Results</a>
         </li>
     {% endif %}
 
@@ -118,62 +122,47 @@
             <li role="separator" class="divider"></li>
         {% endif %}
 
-        <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+        <li class="nav-item dropdown">
+            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"
                role="button" aria-haspopup="true"
                aria-expanded="false">Admin<span
                     class="caret"></span></a>
-            <ul class="dropdown-menu">
-                <li>
-                    <a href="{% url 'challenges:update' site.short_name %}">Challenge
-                        Settings</a>
-                </li>
-                <li>
-                    <a href="{% url 'pages:list' site.short_name %}">Pages</a>
-                </li>
-                <li>
-                    <a href="{% url 'admins:list' site.short_name %}">Admins</a>
-                </li>
-                <li>
-                    <a href="{% url 'participants:list' site.short_name %}">Participants</a>
-                </li>
-                <li>
-                    <a href="{% url 'participants:registration-list' site.short_name %}">Participation
-                        Requests</a>
-                </li>
-                <li>
-                    <a href="{% url 'uploads:list' site.short_name %}">Uploaded
-                        Files</a>
-                </li>
+            <div class="dropdown-menu">
+                <a class="dropdown-item"
+                   href="{% url 'challenges:update' site.short_name %}">Challenge
+                    Settings</a>
+                <a class="dropdown-item"
+                   href="{% url 'pages:list' site.short_name %}">Pages</a>
+                <a class="dropdown-item"
+                   href="{% url 'admins:list' site.short_name %}">Admins</a>
+                <a class="dropdown-item"
+                   href="{% url 'participants:list' site.short_name %}">Participants</a>
+                <a class="dropdown-item"
+                   href="{% url 'participants:registration-list' site.short_name %}">Participation
+                    Requests</a>
+                <a class="dropdown-item"
+                   href="{% url 'uploads:list' site.short_name %}">Uploaded
+                    Files</a>
                 {% if site.use_evaluation %}
-                    <li role="separator" class="divider"></li>
-
-                    <li>
-                        <a href="{% url 'evaluation:config-update' site.short_name %}">
-                            Evaluation Settings
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="{% url 'evaluation:method-list' site.short_name %}">
-                            Evaluation Methods
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="{% url 'evaluation:submission-list' site.short_name %}">
-                            Evaluation Submissions
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="{% url 'evaluation:job-list' site.short_name %}">
-                            Evaluation Jobs
-                        </a>
-                    </li>
-
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item"
+                       href="{% url 'evaluation:config-update' site.short_name %}">
+                        Evaluation Settings
+                    </a>
+                    <a class="dropdown-item"
+                       href="{% url 'evaluation:method-list' site.short_name %}">
+                        Evaluation Methods
+                    </a>
+                    <a class="dropdown-item"
+                       href="{% url 'evaluation:submission-list' site.short_name %}">
+                        Evaluation Submissions
+                    </a>
+                    <a class="dropdown-item"
+                       href="{% url 'evaluation:job-list' site.short_name %}">
+                        Evaluation Jobs
+                    </a>
                 {% endif %}
-            </ul>
+            </div>
         </li>
     {% endif %}
 
